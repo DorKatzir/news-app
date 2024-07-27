@@ -1,0 +1,13 @@
+.news-app {
+    width: clamp(35rem, 90cqi, 100rem);
+}
+
+
+
+.headline img {
+    width: 40rem;
+}
+
+.news-grid-item img {
+    width: 20rem;
+}
