@@ -88,7 +88,9 @@ export default function News() {
             <footer>
                 <p className='copyright'>
                     <span>News App</span>
-                    <span> &copy; All Rights Reserved. By Dror Katzir</span>
+                </p>
+                <p className='copyright'>
+                    &copy; All Rights Reserved. By Dror Katzir
                 </p>
             </footer>
 
