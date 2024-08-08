@@ -1,5 +1,5 @@
 {
-  "homepage" : "https://dorkatzir.github.io/news-app",
+  "homepage": "https://dorkatzir.github.io/news-app",
   "name": "news-app",
   "private": true,
   "version": "0.0.0",
@@ -7,12 +7,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=./",
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.7.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

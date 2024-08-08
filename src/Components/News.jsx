@@ -7,8 +7,48 @@ import healthImg from '../assets/images/health.jpg'
 import entertainmentImg from '../assets/images/entertainment.jpg'
 import nationImg from '../assets/images/nation.jpg'
 import './News.css'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+
+const NEWS_KEY = import.meta.env.VITE_NEWS_API_KEY
 
 export default function News() {
+
+    const [headline, setHeadline] = useState(null)
+    const [news, setNews] = useState([])
+
+    useEffect(()=>{
+
+        const today = (new Date()).toDateString()
+        const localKey = `NEWS-${today}`
+
+        if (localStorage.getItem(localKey)){
+            const data = JSON.parse(localStorage.getItem(localKey))
+            //setHeadline(data)
+            setHeadline(data[0])
+            console.log(data)
+            console.log('Fetched from Local storage')
+            return
+        }
+
+        localStorage.clear()
+
+
+        const fetchNews = async ()=>{
+            const url = `https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=2&apikey=${NEWS_KEY}`
+            const response = await axios.get(url)
+            const fetchedNews = response.data.articles
+            console.log(fetchedNews)
+            
+            localStorage.setItem(localKey, JSON.stringify(fetchedNews))
+            // setHeadline(fetchedNews)
+            console.log('Fetched from API today')
+        }
+
+        fetchNews()
+
+    },[])
+
     return (
         <div className="news-app">
 
@@ -39,42 +79,44 @@ export default function News() {
 
                 <div className="news-section">
 
-                    <div className="headline">
-                        <img src={ techImg } alt="Headline Image" />
-                        <h2 className="headline-title">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, provident.
-                        </h2>
-                    </div>
+                    { headline && 
+                        <div className="headline">
+                            <img src={ headline.image } alt={ headline.title } />
+                            <h2 className="headline-title">
+                                { headline.title }
+                            </h2>
+                        </div>  
+                    }
 
                     <div className="news-grid">
 
                         <div className="news-grid-item">
-                            <img src={ worldImg } alt="News Image" />
+                            <img src={ worldImg } alt="World Image" />
                             <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
                         </div>
 
                         <div className="news-grid-item">
-                            <img src={ sportsImg } alt="News Image" />
+                            <img src={ sportsImg } alt="Sports Image" />
                             <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
                         </div>
 
                         <div className="news-grid-item">
-                            <img src={ scienceImg } alt="News Image" />
+                            <img src={ scienceImg } alt="Science Image" />
                             <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
                         </div>
 
                         <div className="news-grid-item">
-                            <img src={ healthImg } alt="News Image" />
+                            <img src={ healthImg } alt="Health Image" />
                             <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
                         </div>
 
                         <div className="news-grid-item">
-                            <img src={ entertainmentImg } alt="News Image" />
+                            <img src={ entertainmentImg } alt="Entertaintment Image" />
                             <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
                         </div>
 
                         <div className="news-grid-item">
-                            <img src={ nationImg } alt="News Image" />
+                            <img src={ nationImg } alt="Nation Image" />
                             <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
                         </div>
 
