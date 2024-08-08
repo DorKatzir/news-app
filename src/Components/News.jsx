@@ -1,5 +1,5 @@
 
-import techImg from '../assets/images/tech.jpg'
+// import techImg from '../assets/images/tech.jpg'
 import worldImg from '../assets/images/world.jpg'
 import sportsImg from '../assets/images/sports.jpg'
 import scienceImg from '../assets/images/science.jpg'
@@ -24,9 +24,12 @@ export default function News() {
 
         if (localStorage.getItem(localKey)){
             const data = JSON.parse(localStorage.getItem(localKey))
-            //setHeadline(data)
+    
             setHeadline(data[0])
-            console.log(data)
+            //console.log(data[0])
+            setNews(data.slice(1, 7))
+            //console.log(data.slice(1, 7))
+
             console.log('Fetched from Local storage')
             return
         }
@@ -35,13 +38,17 @@ export default function News() {
 
 
         const fetchNews = async ()=>{
-            const url = `https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=2&apikey=${NEWS_KEY}`
+            const url = `https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=7&apikey=${NEWS_KEY}`
             const response = await axios.get(url)
             const fetchedNews = response.data.articles
-            console.log(fetchedNews)
+            // console.log(fetchedNews)
             
             localStorage.setItem(localKey, JSON.stringify(fetchedNews))
-            // setHeadline(fetchedNews)
+
+            setHeadline(fetchedNews[0])
+            setNews(fetchNews.slice(1, 7))
+
+            //console.log(news)
             console.log('Fetched from API today')
         }
 
@@ -89,37 +96,14 @@ export default function News() {
                     }
 
                     <div className="news-grid">
-
-                        <div className="news-grid-item">
-                            <img src={ worldImg } alt="World Image" />
-                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                        </div>
-
-                        <div className="news-grid-item">
-                            <img src={ sportsImg } alt="Sports Image" />
-                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                        </div>
-
-                        <div className="news-grid-item">
-                            <img src={ scienceImg } alt="Science Image" />
-                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                        </div>
-
-                        <div className="news-grid-item">
-                            <img src={ healthImg } alt="Health Image" />
-                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                        </div>
-
-                        <div className="news-grid-item">
-                            <img src={ entertainmentImg } alt="Entertaintment Image" />
-                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                        </div>
-
-                        <div className="news-grid-item">
-                            <img src={ nationImg } alt="Nation Image" />
-                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                        </div>
-
+                        {
+                            news.map((article, index) => 
+                                <div className="news-grid-item" key={ index }>
+                                    <img src={ article.image } alt={ article.title } />
+                                    <h3>{ article.title }</h3>
+                                </div>   
+                            ) 
+                        }
                     </div>
 
                 </div>
