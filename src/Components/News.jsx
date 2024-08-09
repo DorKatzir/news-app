@@ -1,11 +1,11 @@
 
 // import techImg from '../assets/images/tech.jpg'
-import worldImg from '../assets/images/world.jpg'
-import sportsImg from '../assets/images/sports.jpg'
-import scienceImg from '../assets/images/science.jpg'
-import healthImg from '../assets/images/health.jpg'
-import entertainmentImg from '../assets/images/entertainment.jpg'
-import nationImg from '../assets/images/nation.jpg'
+//import worldImg from '../assets/images/world.jpg'
+//import sportsImg from '../assets/images/sports.jpg'
+//import scienceImg from '../assets/images/science.jpg'
+//import healthImg from '../assets/images/health.jpg'
+//import entertainmentImg from '../assets/images/entertainment.jpg'
+//import nationImg from '../assets/images/nation.jpg'
 import './News.css'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -26,10 +26,8 @@ export default function News() {
             const data = JSON.parse(localStorage.getItem(localKey))
     
             setHeadline(data[0])
-            //console.log(data[0])
-            setNews(data)
-            //console.log(data.slice(1, 7))
-
+            setNews(data.slice(1, 7))
+            
             console.log('Fetched from Local storage')
             return
         }
@@ -46,10 +44,8 @@ export default function News() {
             localStorage.setItem(localKey, JSON.stringify(fetchedNews))
 
             setHeadline(fetchedNews[0])
-
             setNews(fetchedNews.slice(1, 7))
-            //console.log(news)
-
+        
             console.log('Fetched from API today')
         }
 
