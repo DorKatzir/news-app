@@ -27,7 +27,7 @@ export default function News() {
     
             setHeadline(data[0])
             //console.log(data[0])
-            setNews(data.slice(1, 7))
+            setNews(data)
             //console.log(data.slice(1, 7))
 
             console.log('Fetched from Local storage')
@@ -46,7 +46,7 @@ export default function News() {
             localStorage.setItem(localKey, JSON.stringify(fetchedNews))
 
             setHeadline(fetchedNews[0])
-            setNews(fetchNews.slice(1, 7))
+            setNews(fetchNews)
 
             //console.log(news)
             console.log('Fetched from API today')
@@ -97,7 +97,8 @@ export default function News() {
 
                     <div className="news-grid">
                         {
-                            news.map((article, index) => 
+                            
+                            news.slice(1, 7).map((article, index) => 
                                 <div className="news-grid-item" key={ index }>
                                     <img src={ article.image } alt={ article.title } />
                                     <h3>{ article.title }</h3>
