@@ -21,24 +21,59 @@ export default function News() {
 
     useEffect(()=>{
 
-        const today = (new Date()).toDateString()
-        const localKey = `NEWS-${today}`
 
-        if (localStorage.getItem(localKey)){
+        const category = 'sports'
+
+        const today = (new Date()).toDateString()
+        const localKey = `${category}-${today}`
+
+
+
+        function clearLocalStorageKeys() {
+
+            let counter = 0;
+
+            for (let i = 0; i < localStorage.length; i++) {
+
+                if ( localStorage.key(i) === localKey )  {
+                    counter = 1
+                    return
+                }
+
+                // if (localStorage.key(i) === null) {
+                //     counter += 1
+                // }
+
+            }
+
+            if (counter === 0) {
+                localStorage.clear()
+                console.log('cleared')
+            } 
+    
+        }
+
+        
+
+        if (localStorage.getItem(localKey) || localStorage.getItem(localKey) !== null){
+
             const data = JSON.parse(localStorage.getItem(localKey))
     
             setHeadline(data[0])
             setNews(data.slice(1, 7))
             
-            console.log('Fetched from Local storage')
+            console.log('Fetched from Local storage ' + localKey)
+            
             return
         }
 
-        localStorage.clear()
+   
+
+        //clearLocalStorageKeys()
 
 
         const fetchNews = async ()=>{
-            const url = `https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=7&apikey=${NEWS_KEY}`
+            const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=us&max=7&apikey=${NEWS_KEY}`
             const response = await axios.get(url)
             const fetchedNews = response.data.articles
             // console.log(fetchedNews)
@@ -48,7 +83,7 @@ export default function News() {
             setHeadline(fetchedNews[0])
             setNews(fetchedNews.slice(1, 7))
         
-            console.log('Fetched from API today')
+            console.log('Fetched from API today ' + localKey)
         }
 
         fetchNews()
