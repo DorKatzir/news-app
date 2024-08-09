@@ -6,6 +6,8 @@
 //import healthImg from '../assets/images/health.jpg'
 //import entertainmentImg from '../assets/images/entertainment.jpg'
 //import nationImg from '../assets/images/nation.jpg'
+import noImg from '../assets/images/no-img.png'
+
 import './News.css'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -83,20 +85,29 @@ export default function News() {
 
                 <div className="news-section">
 
-                    { headline && 
-                        <div className="headline">
-                            <img src={ headline.image } alt={ headline.title } />
-                            <h2 className="headline-title">
-                                { headline.title }
-                            </h2>
-                        </div>  
+                    { 
+                        headline && 
+                            <div className="headline">
+                                { 
+                                    headline.image 
+                                            ? <img src={ headline.image } alt={ headline.title } />
+                                            : <img src={ noImg } />
+                                }      
+                                <h2 className="headline-title">
+                                    { headline.title }
+                                </h2>
+                            </div>  
                     }
 
                     <div className="news-grid">
                         {
                             news.map((article, index) => 
                                 <div className="news-grid-item" key={ index }>
-                                    <img src={ article.image } alt={ article.title } />
+                                    {
+                                        article.image 
+                                                ? <img src={ article.image } alt={ article.title } /> 
+                                                : <img src={ noImg } />
+                                    }
                                     <h3>{ article.title }</h3>
                                 </div>   
                             ) 
