@@ -81,3 +81,11 @@
 .read-more-link:active {
     transform: translateY(.08em);
 }
+
+
+@media (max-width:500px) {
+
+    .modal-content {
+        width: 80%;
+    }
+}
