@@ -21,40 +21,19 @@ export default function News() {
 
     useEffect(()=>{
 
-
-        const category = 'sports'
+        const category = 'general'
 
         const today = (new Date()).toDateString()
         const localKey = `${category}-${today}`
 
+        // console.log(localStorage.key('name'))
+
+        let keys = Object.keys(localStorage)
+        keys.forEach((key) => console.log(key));
 
 
-        function clearLocalStorageKeys() {
 
-            let counter = 0;
-
-            for (let i = 0; i < localStorage.length; i++) {
-
-                if ( localStorage.key(i) === localKey )  {
-                    counter = 1
-                    return
-                }
-
-                // if (localStorage.key(i) === null) {
-                //     counter += 1
-                // }
-
-            }
-
-            if (counter === 0) {
-                localStorage.clear()
-                console.log('cleared')
-            } 
-    
-        }
-
-        
-
+        // Getting data from Local Storage
         if (localStorage.getItem(localKey) || localStorage.getItem(localKey) !== null){
 
             const data = JSON.parse(localStorage.getItem(localKey))
@@ -62,7 +41,7 @@ export default function News() {
             setHeadline(data[0])
             setNews(data.slice(1, 7))
             
-            console.log('Fetched from Local storage ' + localKey)
+            console.log('Fetched from Local storage')
             
             return
         }
@@ -72,18 +51,24 @@ export default function News() {
         //clearLocalStorageKeys()
 
 
+        // Getting data from API
         const fetchNews = async ()=>{
+
+            if ( ! localStorage.getItem(today) ) {
+                localStorage.setItem(today, '')
+            }
+
             const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=us&max=7&apikey=${NEWS_KEY}`
             const response = await axios.get(url)
             const fetchedNews = response.data.articles
             // console.log(fetchedNews)
             
             localStorage.setItem(localKey, JSON.stringify(fetchedNews))
-
+            
             setHeadline(fetchedNews[0])
             setNews(fetchedNews.slice(1, 7))
         
-            console.log('Fetched from API today ' + localKey)
+            console.log('Fetched from API today')
         }
 
         fetchNews()
