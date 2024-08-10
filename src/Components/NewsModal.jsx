@@ -1,7 +1,7 @@
 import demoImg from '../assets/images/demo.jpg'
 import './NewsModal.css'
 
-export default function NewsModal({show, article, onclose}) {
+export default function NewsModal({show, article, onClose}) {
     if (!show ) {
         return null
     }
@@ -9,29 +9,29 @@ export default function NewsModal({show, article, onclose}) {
         <div className="modal-overlay">
             <div className="modal-content">
 
-                <span className="close-button">
+                <span className="close-button" onClick={onClose}>
                     <i className="fa-solid fa-xmark"></i>
                 </span>
 
-                <img src={ demoImg } alt="Modal Image" className="modal-image" />
+                <img src={article.image} alt={article.title} className="modal-image" />
 
                 <h2 className="modal-title">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, mollitia.
+                    {article.title}
                 </h2>
 
                 <p className="modal-source">
-                    Source: The Guardian
+                    Source: { article.source.name }
                 </p>
 
                 <p className="modal-date">
-                    Aug 10, 2024, 03:15 PM
+                    { article.publishedAt }
                 </p>
 
                 <p className="modal-content-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus modi dolorem quis id? Consequatur aliquid aspernatur provident explicabo voluptatibus autem accusamus incidunt suscipit nostrum dicta facilis quis est iusto accusantium sint, aut dolor reiciendis veritatis!
+                    { article.content }
                 </p>
 
-                <a href="#" className="read-more-link">
+                <a href={ article.url } target='_blank' className="read-more-link">
                     Read More
                 </a>
 
