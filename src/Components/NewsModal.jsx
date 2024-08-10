@@ -1,4 +1,5 @@
 import demoImg from '../assets/images/demo.jpg'
+import './NewsModal.css'
 
 export default function NewsModal() {
     return (
@@ -27,7 +28,7 @@ export default function NewsModal() {
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus modi dolorem quis id? Consequatur aliquid aspernatur provident explicabo voluptatibus autem accusamus incidunt suscipit nostrum dicta facilis quis est iusto accusantium sint, aut dolor reiciendis veritatis!
                 </p>
 
-                <a href="" className="read-more-link">
+                <a href="#" className="read-more-link">
                     Read More
                 </a>
 
