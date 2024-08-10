@@ -1,7 +1,10 @@
 import demoImg from '../assets/images/demo.jpg'
 import './NewsModal.css'
 
-export default function NewsModal() {
+export default function NewsModal({show, article, onclose}) {
+    if (!show ) {
+        return null
+    }
     return (
         <div className="modal-overlay">
             <div className="modal-content">

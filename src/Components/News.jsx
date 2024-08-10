@@ -20,6 +20,8 @@ export default function News() {
     const [headline, setHeadline] = useState(null)
     const [news, setNews] = useState([])
     const [selectedCategory, setSelectedCategory] = useState('general')
+    const [showModal, setShowModal] = useState(false)
+    const [selectedArticle, setSelectedArticle] = useState(null)
 
     useEffect(()=>{
 
@@ -73,6 +75,11 @@ export default function News() {
     const handleCategoryClick = ( e, category ) => {
         e.preventDefault()
         setSelectedCategory( category )
+    }
+
+    const handleArticleClick = (article) => {
+        setSelectedArticle(article)
+        setShowModal(true)
     }
 
     return (
@@ -138,7 +145,7 @@ export default function News() {
 
                 </div>
 
-                <NewsModal />
+                <NewsModal show={showModal} article={selectedArticle} onClose={() => setShowModal(false)} />
             </div>
 
             <footer>
