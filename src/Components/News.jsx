@@ -28,10 +28,8 @@ export default function News() {
 
     useEffect(()=>{
 
-        const category = 'general'
-
         const today = (new Date()).toDateString()
-        const localKey = `${category}-${today}`
+        const localKey = `${selectedCategory}-${today}`
 
         
         // Getting data from Local Storage
@@ -42,7 +40,7 @@ export default function News() {
             setHeadline(data[0])
             setNews(data.slice(1, 7))
             
-            console.log('Fetched from Local storage')
+            console.log(selectedCategory + ' - Fetched from Local storage')
             
             return
         }
@@ -60,7 +58,7 @@ export default function News() {
                 localStorage.setItem('day', today)
             }
 
-            const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=us&max=7&apikey=${NEWS_KEY}`
+            const url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=us&max=7&apikey=${NEWS_KEY}`
             const response = await axios.get(url)
             const fetchedNews = response.data.articles
             // console.log(fetchedNews)
@@ -70,12 +68,17 @@ export default function News() {
             setHeadline(fetchedNews[0])
             setNews(fetchedNews.slice(1, 7))
         
-            console.log('Fetched from API')
+            console.log(selectedCategory + ' - Fetched from API')
         }
 
         fetchNews()
 
-    },[])
+    },[selectedCategory])
+
+    const handleCategoryClick = ( e, category ) => {
+        e.preventDefault()
+        setSelectedCategory( category )
+    }
 
     return (
         <div className="news-app">
@@ -93,15 +96,17 @@ export default function News() {
                         Categories
                     </h2>
                     <div className="categories">
-                        <a href="#" className="nav-link">General</a>
-                        <a href="#" className="nav-link">World</a>
-                        <a href="#" className="nav-link">Business</a>
-                        <a href="#" className="nav-link">Technology</a>
-                        <a href="#" className="nav-link">Entertainment</a>
-                        <a href="#" className="nav-link">Sports</a>
-                        <a href="#" className="nav-link">Science</a>
-                        <a href="#" className="nav-link">Health</a>
-                        <a href="#" className="nav-link">Nation</a>
+                        {
+                            categories.map((category) => 
+                                <a  key={category} 
+                                    onClick={ (e)=> handleCategoryClick(e, category)} 
+                                    className="nav-link"
+                                    href='#'
+                                >
+                                { category }
+                                </a>   
+                            )
+                        }
                     </div>
                 </nav>
 
