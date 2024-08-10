@@ -1,16 +1,11 @@
+import { useEffect, useState } from 'react'
 
-// import techImg from '../assets/images/tech.jpg'
-//import worldImg from '../assets/images/world.jpg'
-//import sportsImg from '../assets/images/sports.jpg'
-//import scienceImg from '../assets/images/science.jpg'
-//import healthImg from '../assets/images/health.jpg'
-//import entertainmentImg from '../assets/images/entertainment.jpg'
-//import nationImg from '../assets/images/nation.jpg'
 import noImg from '../assets/images/no-img.png'
 
 import './News.css'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import NewsModal from './NewsModal'
+
 
 const NEWS_KEY = import.meta.env.VITE_NEWS_API_KEY
 
@@ -143,7 +138,7 @@ export default function News() {
 
                 </div>
 
-
+                <NewsModal />
             </div>
 
             <footer>
