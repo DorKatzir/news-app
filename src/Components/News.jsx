@@ -26,18 +26,12 @@ export default function News() {
         const today = (new Date()).toDateString()
         const localKey = `${category}-${today}`
 
-        // console.log(localStorage.key('name'))
-
-        let keys = Object.keys(localStorage)
-        keys.forEach((key) => console.log(key));
-
-
-
+        
         // Getting data from Local Storage
         if (localStorage.getItem(localKey) || localStorage.getItem(localKey) !== null){
-
+            
             const data = JSON.parse(localStorage.getItem(localKey))
-    
+            
             setHeadline(data[0])
             setNews(data.slice(1, 7))
             
@@ -45,17 +39,18 @@ export default function News() {
             
             return
         }
-
-   
-
-        //clearLocalStorageKeys()
+        
+        
+        if (localStorage.getItem('day') !== today) {
+            localStorage.clear()
+        }
 
 
         // Getting data from API
         const fetchNews = async ()=>{
 
-            if ( ! localStorage.getItem(today) ) {
-                localStorage.setItem(today, '')
+            if ( ! localStorage.getItem('day') ) {
+                localStorage.setItem('day', today)
             }
 
             const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=us&max=7&apikey=${NEWS_KEY}`
@@ -68,7 +63,7 @@ export default function News() {
             setHeadline(fetchedNews[0])
             setNews(fetchedNews.slice(1, 7))
         
-            console.log('Fetched from API today')
+            console.log('Fetched from API')
         }
 
         fetchNews()
