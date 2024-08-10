@@ -14,10 +14,17 @@ import { useEffect, useState } from 'react'
 
 const NEWS_KEY = import.meta.env.VITE_NEWS_API_KEY
 
+const categories = [
+    'general', 'world', 'business', 'technology', 'entertainment', 'sports', 'science', 'health', 'nation'
+]
+
+
+
 export default function News() {
 
     const [headline, setHeadline] = useState(null)
     const [news, setNews] = useState([])
+    const [selectedCategory, setSelectedCategory] = useState('general')
 
     useEffect(()=>{
 
