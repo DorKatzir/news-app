@@ -116,7 +116,7 @@ export default function News() {
 
                     { 
                         headline && 
-                            <div className="headline">
+                            <div className="headline" onClick={() => handleArticleClick(headline)}>
                                 { 
                                     headline.image 
                                             ? <img src={ headline.image } alt={ headline.title } />
@@ -131,7 +131,7 @@ export default function News() {
                     <div className="news-grid">
                         {
                             news.map((article, index) => 
-                                <div className="news-grid-item" key={ index }>
+                                <div className="news-grid-item" key={ index } onClick={() => handleArticleClick(article)}>
                                     {
                                         article.image 
                                                 ? <img src={ article.image } alt={ article.title } /> 
