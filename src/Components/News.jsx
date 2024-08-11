@@ -89,14 +89,9 @@ export default function News() {
                 <h1 className="logo">
                     News App
                 </h1>
-            </div>
-
-            <div className="news-content">
 
                 <nav className="navbar">
-                    <h2 className="nav-heading">
-                        Categories
-                    </h2>
+                    
                     <div className="categories">
                         {
                             categories.map((category) => 
@@ -110,7 +105,12 @@ export default function News() {
                             )
                         }
                     </div>
+                    
                 </nav>
+
+            </div>
+
+            <div className="news-content">
 
                 <div className="news-section">
 

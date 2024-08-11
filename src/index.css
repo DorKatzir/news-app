@@ -34,3 +34,8 @@ html{
         font-size: 45%;
     }
 } */
+
+
+body{
+    max-width: 1200px;
+}
