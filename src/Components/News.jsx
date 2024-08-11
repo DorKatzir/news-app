@@ -98,14 +98,13 @@ export default function News() {
                                 <a  key={category} 
                                     onClick={ (e)=> handleCategoryClick(e, category)} 
                                     className="nav-link"
-                                    href='#'
                                 >
                                 { category }
                                 </a>   
                             )
                         }
                     </div>
-                    
+
                 </nav>
 
             </div>
