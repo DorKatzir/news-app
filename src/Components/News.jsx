@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import noImg from '../assets/images/no-img.png'
 
-// import './News.css'
+import './News.css'
 import axios from 'axios'
 import NewsModal from './NewsModal'
 
