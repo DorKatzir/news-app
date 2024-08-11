@@ -1,13 +1,13 @@
 .news-app {
-    width: clamp(35rem, 90cqi, 100rem);
-    height: 90vh;
+    /* width: clamp(35rem, 90cqi, 100rem);
+    height: 90vh; */
 
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
     /* justify-content: space-between; */
 
-    border-radius: 1rem;
+    /* border-radius: 1rem; */
     background-color: #060709;
     box-shadow: 0 2rem 3rem rgb(0 0 0 / .5);
 }
