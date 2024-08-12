@@ -130,13 +130,13 @@ export default function News() {
                     
                     {
                         news.map((article, index) => 
-                            <div className={`news-grid-item news-grid-item-${index}`} key={ index } onClick={() => handleArticleClick(article)}>
+                            <div className={`news-grid-item grid-item-${index}`} key={ index } onClick={() => handleArticleClick(article)}>
                                 {
                                     article.image 
                                             ? <img src={ article.image } alt={ article.title } /> 
                                             : <img src={ noImg } />
                                 }
-                                <h4>{ article.title }</h4>
+                                <h3>{ article.title }</h3>
                             </div>   
                         ) 
                     }
