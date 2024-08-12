@@ -121,7 +121,7 @@ export default function News() {
                                             ? <img src={ headline.image } alt={ headline.title } />
                                             : <img src={ noImg } />
                                 }      
-                                <h2 className="headline-title">
+                                <h2 className="headline-title trancuate">
                                     { headline.title }
                                 </h2>
                             </div>  
@@ -136,7 +136,7 @@ export default function News() {
                                             ? <img src={ article.image } alt={ article.title } /> 
                                             : <img src={ noImg } />
                                 }
-                                <h3>{ article.title }</h3>
+                                <h3 className='trancuate'>{ article.title }</h3>
                             </div>   
                         ) 
                     }
