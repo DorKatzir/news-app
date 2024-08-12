@@ -35,7 +35,7 @@ export default function News() {
             const data = JSON.parse(localStorage.getItem(localKey))
             
             setHeadline(data[0])
-            setNews(data.slice(1, 8))
+            setNews(data.slice(1, 7))
             
             console.log(selectedCategory + ' - Fetched from Local storage')
             
@@ -55,7 +55,7 @@ export default function News() {
                 localStorage.setItem('day', today)
             }
 
-            const url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=us&max=8&apikey=${NEWS_KEY}`
+            const url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=us&max=7&apikey=${NEWS_KEY}`
             const response = await axios.get(url)
             const fetchedNews = response.data.articles
             // console.log(fetchedNews)
@@ -63,7 +63,7 @@ export default function News() {
             localStorage.setItem(localKey, JSON.stringify(fetchedNews))
             
             setHeadline(fetchedNews[0])
-            setNews(fetchedNews.slice(1, 8))
+            setNews(fetchedNews.slice(1, 7))
         
             console.log(selectedCategory + ' - Fetched from API')
         }
@@ -130,13 +130,13 @@ export default function News() {
                     
                     {
                         news.map((article, index) => 
-                            <div className="news-grid-item" key={ index } onClick={() => handleArticleClick(article)}>
+                            <div className={`news-grid-item news-grid-item-${index}`} key={ index } onClick={() => handleArticleClick(article)}>
                                 {
                                     article.image 
                                             ? <img src={ article.image } alt={ article.title } /> 
                                             : <img src={ noImg } />
                                 }
-                                <h3>{ article.title }</h3>
+                                <h4>{ article.title }</h4>
                             </div>   
                         ) 
                     }

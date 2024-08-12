@@ -38,4 +38,5 @@ html{
 
 body{
     max-width: 1200px;
+    --background-body: #131a21;
 }
