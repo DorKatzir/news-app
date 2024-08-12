@@ -5,7 +5,7 @@
     align-items: center;
     
     justify-content: space-between;
-    margin-block-end: 1rem;
+    margin-block-end: 3rem;
 
     h1{
         margin: 0;
@@ -158,26 +158,14 @@
             bottom: 0;
             left:0;
             width: 100%;
-            height: 30%;
+            height: 50%;
             
-            background: #1a242f;
+            // background: #1a242f;
+            background: rgb( 0 0 0 / .9);
             z-index: 1;
 
         }
-        &::after {
-            content: '';
-            position: absolute;
-            border-radius: 1.25ch;
-            bottom: 0;
-            left:0;
-            width: 100%;
-            height: 100%;
-            // background: hsl(211, 29%, 14%);
-            // background: hsla(0, 0%, 5%, 0.753);
 
-            z-index: 0;
-
-        }
 
     }
 
