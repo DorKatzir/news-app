@@ -1,4 +1,7 @@
 
+.news-app {
+    padding: 0 1.25ch;
+}
 
 .news-header{
     display: flex;
@@ -42,10 +45,6 @@
         justify-content: center;
     }
 }
-
-
-
-
 
 
 
@@ -157,16 +156,6 @@
     // 600px
     @media (max-width: 75ch) {
 
-        // .news-grid-item {
-        //     img {
-               
-        //         width: 100%;
-        //         aspect-ratio: 16 / 9;
-        //     }
-
-        // }
-
-
         .headline {
             grid-column: 1 / 1;
         }
@@ -176,13 +165,3 @@
 }
 
 
-
-.trancuate {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    display: block;
-    -webkit-line-clamp: 2;
-            line-clamp: 2; 
-    -webkit-box-orient: vertical;
- }
