@@ -126,10 +126,33 @@
   }
 }
 
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+footer p {
+  margin: 0;
+}
+footer p span {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+footer .copyright {
+  font-size: small;
+}
+@media (max-width: 75ch) {
+  footer {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 .trancuate {
   width: 100%;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   display: -webkit-box;
 }

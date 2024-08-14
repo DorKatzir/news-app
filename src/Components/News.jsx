@@ -148,11 +148,11 @@ export default function News() {
             </div>
 
             <footer>
-                <p className='copyright'>
-                    <span>News App</span>
+                <p>
+                    <span>News App </span>
                 </p>
                 <p className='copyright'>
-                    &copy; All Rights Reserved. By Dror Katzir
+                     &copy; Created by Dror Katzir
                 </p>
             </footer>
 
