@@ -12,6 +12,7 @@
   margin: 0;
   white-space: nowrap;
   font-size: clamp(1.4em, 3cqi, 2.2em);
+  text-transform: uppercase;
 }
 .news-header .navbar .categories {
   display: flex;

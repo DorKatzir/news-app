@@ -22,20 +22,24 @@ export default function NewsModal({show, article, onClose}) {
                                 {article.title}
                             </h2>
 
-                            <p className="modal-source">
-                                Source: { article.source.name }
-                            </p>
+                            <div className="modal-subtitle">
 
-                            <p className="modal-date">
-                                { 
-                                    new Date(article.publishedAt).toLocaleString('en-US', { month: 'short', 
-                                                                                            day: '2-digit', 
-                                                                                            year: 'numeric',
-                                                                                            hour: '2-digit',
-                                                                                            minute: '2-digit'
-                                                                                         }) 
-                                }
-                            </p>
+                                <p className="modal-source">
+                                    Source: { article.source.name }
+                                </p>
+
+                                <p className="modal-date">
+                                    { 
+                                        new Date(article.publishedAt).toLocaleString('en-US', { month: 'short', 
+                                                                                                day: '2-digit', 
+                                                                                                year: 'numeric',
+                                                                                                hour: '2-digit',
+                                                                                                minute: '2-digit'
+                                                                                            }) 
+                                    }
+                                </p>
+
+                            </div>
 
                             <p className="modal-content-text">
                                 { article.content }

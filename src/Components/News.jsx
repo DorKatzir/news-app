@@ -84,6 +84,8 @@ export default function News() {
 
     return (
         <div className="news-app">
+            
+            <NewsModal show={showModal} article={selectedArticle} onClose={() => setShowModal(false)} />
 
             <div className="news-header">
                 <h1 className="logo">
@@ -144,7 +146,6 @@ export default function News() {
 
                 </div>
 
-                <NewsModal show={showModal} article={selectedArticle} onClose={() => setShowModal(false)} />
             </div>
 
             <footer>
